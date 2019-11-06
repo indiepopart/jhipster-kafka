@@ -1,0 +1,28 @@
+{
+  "gatewayApp": {
+    "alertStoreAlert": {
+      "home": {
+        "title": "Store Alerts",
+        "createLabel": "Create a new Store Alert",
+        "createOrEditLabel": "Create or edit a Store Alert",
+        "notFound": "No Store Alerts found"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Store Alert {{ id }}?"
+      },
+      "detail": {
+        "title": "Store Alert"
+      },
+      "storeName": "Store Name",
+      "storeStatus": "Store Status",
+      "timestamp": "Timestamp"
+    }
+  },
+  "alertApp": {
+    "alertStoreAlert": {
+      "created": "A new Store Alert is created with identifier {{ param }}",
+      "updated": "A Store Alert is updated with identifier {{ param }}",
+      "deleted": "A Store Alert is deleted with identifier {{ param }}"
+    }
+  }
+}
