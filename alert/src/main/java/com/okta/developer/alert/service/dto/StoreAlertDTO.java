@@ -1,7 +1,5 @@
 package com.okta.developer.alert.service.dto;
 
-import java.time.Instant;
-
 public class StoreAlertDTO {
 
     private String storeName;
