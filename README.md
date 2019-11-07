@@ -66,7 +66,6 @@ Once everything is up, go to the gateway at http://localhost:8080 and login. Cre
 ## Links
 
 - [JHipster: Using Kafka](https://www.jhipster.tech/using-kafka/)
-oauth2-and-openid-connect)
 - [Apache Kafka](https://kafka.apache.org/intro)
 
 
