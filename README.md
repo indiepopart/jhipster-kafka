@@ -13,7 +13,7 @@ This repository contains a microservices architecture with Kafka support and inc
 
 To install this example, run the following commands:
 ```bash
-git clone https://github.com/indiepopart/jhipster-kafka.git
+git clone https://github.com/oktadeveloper/okta-kafka-microservices-example.git jhipster-kafka
 cd jhipster-kafka
 ```
 
@@ -24,20 +24,22 @@ Log in to your Okta Developer account (or [sign up](https://developer.okta.com/s
 1. From the **Applications** page, choose **Add Application**.
 2. On the Create New Application page, select **Web**.
 
+Configure the following settings:
 
-Configure the following authentication settings for the new Web App:
 - Name: give a name for your application
-- Login redirect URIs: http://localhost:8080/login/oauth2/code/oidc,http://localhost:8761/login/oauth2/code/oidc
+- Login redirect URIs: 
+  - `http://localhost:8080/login/oauth2/code/oidc`
+  - `http://localhost:8761/login/oauth2/code/oidc`
 - Logout redirect URIs:
-http://localhost:8080,http://localhost:8761
+  - `http://localhost:8080`
+  - `http://localhost:8761`
 - Grant Type Allowed: Authorization Code and Refresh Token
 
 Copy the **Client ID** and **Client secret**, and find the **Org URL** at the top right corner in the Okta Dashboard.
 
-
 ### Run with Docker Compose
 
-Create an `docker-compose\.env` file with the following content:
+Create an `docker-compose/.env` file with the following content:
 
 ```
 OIDC_CLIENT_ID={yourClientId}
@@ -48,26 +50,26 @@ MAIL_PASSWORD={yourGmailPassword}
 DISTRIBUTION_LIST={anotherEmailAccount}
 ```
 
-Build the services docker images for blog, store and gateway with the following command:
+Build the Docker images for blog, store and gateway by running the following command in each directory.
 
 ```bash
 ./mvnw -ntp -Pprod verify jib:dockerBuild
 ```
 
-Once all the services are built, run docker-compose:
+Once all the services are built, run them with Docker Compose:
+
 ```bash
 docker-compose up
 ```
 
-Login to the JHipster Registry at [**http://localhost:8761**](http://localhost:8761) with Okta user credentials and check the service's health.
+Login to the JHipster Registry at <http://localhost:8761> with your Okta user credentials and check the service's health.
 
-Once everything is up, go to the gateway at http://localhost:8080 and login. Create store entity and then update it. The `alert` microservice should log entries when processing the received message from the `store` service.
+Once everything is up, go to the gateway at <http://localhost:8080> and log in. Create a store entity and then update it. The `alert` microservice should log entries when processing the received message from the `store` service and you should receive an email.
 
 ## Links
 
 - [JHipster: Using Kafka](https://www.jhipster.tech/using-kafka/)
 - [Apache Kafka](https://kafka.apache.org/intro)
-
 
 ## Help
 
