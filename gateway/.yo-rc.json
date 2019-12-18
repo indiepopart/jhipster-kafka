@@ -6,10 +6,7 @@
     "enableSwaggerCodegen": false,
     "enableTranslation": true,
     "jhiPrefix": "jhi",
-    "languages": [
-      "en",
-      "fr"
-    ],
+    "languages": ["en", "fr"],
     "messageBroker": false,
     "nativeLanguage": "en",
     "packageName": "com.okta.developer.gateway",
@@ -19,14 +16,12 @@
     "serviceDiscoveryType": "eureka",
     "skipClient": false,
     "skipServer": false,
-    "testFrameworks": [
-      "protractor"
-    ],
+    "testFrameworks": ["protractor"],
     "websocket": false,
     "baseName": "gateway",
     "applicationType": "gateway",
     "authenticationType": "oauth2",
-    "jhipsterVersion": "6.4.1",
+    "jhipsterVersion": "6.5.1",
     "buildTool": "maven",
     "skipUserManagement": true,
     "clientPackageManager": "npm",
@@ -42,8 +37,5 @@
     "otherModules": [],
     "blueprints": []
   },
-  "entities": [
-    "Store",
-    "StoreAlert"
-  ]
+  "entities": ["Store", "StoreAlert"]
 }

@@ -1,13 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { filter, map } from 'rxjs/operators';
 import { JhiEventManager } from 'ng-jhipster';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IStoreAlert } from 'app/shared/model/alert/store-alert.model';
-import { AccountService } from 'app/core/auth/account.service';
 import { StoreAlertService } from './store-alert.service';
+import { StoreAlertDeleteDialogComponent } from './store-alert-delete-dialog.component';
 
 @Component({
   selector: 'jhi-store-alert',
@@ -15,32 +14,18 @@ import { StoreAlertService } from './store-alert.service';
 })
 export class StoreAlertComponent implements OnInit, OnDestroy {
   storeAlerts: IStoreAlert[];
-  currentAccount: any;
   eventSubscriber: Subscription;
 
-  constructor(
-    protected storeAlertService: StoreAlertService,
-    protected eventManager: JhiEventManager,
-    protected accountService: AccountService
-  ) {}
+  constructor(protected storeAlertService: StoreAlertService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll() {
-    this.storeAlertService
-      .query()
-      .pipe(
-        filter((res: HttpResponse<IStoreAlert[]>) => res.ok),
-        map((res: HttpResponse<IStoreAlert[]>) => res.body)
-      )
-      .subscribe((res: IStoreAlert[]) => {
-        this.storeAlerts = res;
-      });
+    this.storeAlertService.query().subscribe((res: HttpResponse<IStoreAlert[]>) => {
+      this.storeAlerts = res.body;
+    });
   }
 
   ngOnInit() {
     this.loadAll();
-    this.accountService.identity().subscribe(account => {
-      this.currentAccount = account;
-    });
     this.registerChangeInStoreAlerts();
   }
 
@@ -53,6 +38,11 @@ export class StoreAlertComponent implements OnInit, OnDestroy {
   }
 
   registerChangeInStoreAlerts() {
-    this.eventSubscriber = this.eventManager.subscribe('storeAlertListModification', response => this.loadAll());
+    this.eventSubscriber = this.eventManager.subscribe('storeAlertListModification', () => this.loadAll());
+  }
+
+  delete(storeAlert: IStoreAlert) {
+    const modalRef = this.modalService.open(StoreAlertDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.storeAlert = storeAlert;
   }
 }

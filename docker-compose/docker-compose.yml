@@ -9,7 +9,7 @@ services:
       - 'EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka'
       - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
       - 'SPRING_DATASOURCE_URL=jdbc:mysql://alert-mysql:3306/alert?useUnicode=true&characterEncoding=utf8&useSSL=false'
-      - SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI=${RESOURCE_ISSUER_URI}
+      - 'SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI=${RESOURCE_ISSUER_URI}'
       - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_ID=${OIDC_CLIENT_ID}
       - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET}
       - JHIPSTER_SLEEP=30
@@ -21,12 +21,12 @@ services:
       - 'KAFKA_PRODUCER_BOOTSTRAP_SERVERS=kafka:9092'
       - KAFKA_PRODUCER_KEY_DESERIALIZER=org.apache.kafka.common.serialization.StringDeserializer
       - KAFKA_PRODUCER_VALUE_DESERIALIZER=org.apache.kafka.common.serialization.StringDeserializer
-      - JHIPSTER_REGISTRY_PASSWORD=admin
+      - JHIPSTER_REGISTRY_PASSWORD=default
       - SPRING_MAIL_USERNAME=${MAIL_USERNAME}
       - SPRING_MAIL_PASSWORD=${MAIL_PASSWORD}
       - ALERT_DISTRIBUTION_LIST=${DISTRIBUTION_LIST}
   alert-mysql:
-    image: 'mysql:8.0.17'
+    image: 'mysql:8.0.18'
     environment:
       - MYSQL_USER=root
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
@@ -42,11 +42,11 @@ services:
       - 'EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka'
       - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
       - 'SPRING_DATASOURCE_URL=jdbc:postgresql://gateway-postgresql:5432/gateway'
-      - SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI=${RESOURCE_ISSUER_URI}
+      - 'SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI=${RESOURCE_ISSUER_URI}'
       - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_ID=${OIDC_CLIENT_ID}
       - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET}
       - JHIPSTER_SLEEP=30
-      - JHIPSTER_REGISTRY_PASSWORD=admin
+      - JHIPSTER_REGISTRY_PASSWORD=default
     ports:
       - '8080:8080'
   gateway-postgresql:
@@ -65,7 +65,7 @@ services:
       - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
       - 'SPRING_DATA_MONGODB_URI=mongodb://store-mongodb:27017'
       - SPRING_DATA_MONGODB_DATABASE=store
-      - SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI=${RESOURCE_ISSUER_URI}
+      - 'SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI=${RESOURCE_ISSUER_URI}'
       - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_ID=${OIDC_CLIENT_ID}
       - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET}
       - JHIPSTER_SLEEP=30
@@ -77,9 +77,9 @@ services:
       - 'KAFKA_PRODUCER_BOOTSTRAP_SERVERS=kafka:9092'
       - KAFKA_PRODUCER_KEY_DESERIALIZER=org.apache.kafka.common.serialization.StringDeserializer
       - KAFKA_PRODUCER_VALUE_DESERIALIZER=org.apache.kafka.common.serialization.StringDeserializer
-      - JHIPSTER_REGISTRY_PASSWORD=admin
+      - JHIPSTER_REGISTRY_PASSWORD=default
   store-mongodb:
-    image: 'mongo:4.0.12'
+    image: 'mongo:4.0.13'
 
   zookeeper:
     extends:

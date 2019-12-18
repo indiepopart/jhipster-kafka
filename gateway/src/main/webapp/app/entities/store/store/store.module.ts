@@ -5,14 +5,12 @@ import { GatewaySharedModule } from 'app/shared/shared.module';
 import { StoreComponent } from './store.component';
 import { StoreDetailComponent } from './store-detail.component';
 import { StoreUpdateComponent } from './store-update.component';
-import { StoreDeletePopupComponent, StoreDeleteDialogComponent } from './store-delete-dialog.component';
-import { storeRoute, storePopupRoute } from './store.route';
-
-const ENTITY_STATES = [...storeRoute, ...storePopupRoute];
+import { StoreDeleteDialogComponent } from './store-delete-dialog.component';
+import { storeRoute } from './store.route';
 
 @NgModule({
-  imports: [GatewaySharedModule, RouterModule.forChild(ENTITY_STATES)],
-  declarations: [StoreComponent, StoreDetailComponent, StoreUpdateComponent, StoreDeleteDialogComponent, StoreDeletePopupComponent],
+  imports: [GatewaySharedModule, RouterModule.forChild(storeRoute)],
+  declarations: [StoreComponent, StoreDetailComponent, StoreUpdateComponent, StoreDeleteDialogComponent],
   entryComponents: [StoreDeleteDialogComponent]
 })
 export class StoreStoreModule {}

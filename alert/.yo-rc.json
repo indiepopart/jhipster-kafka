@@ -24,7 +24,7 @@
     "applicationType": "microservice",
     "authenticationType": "oauth2",
     "serverPort": "8082",
-    "jhipsterVersion": "6.4.1",
+    "jhipsterVersion": "6.5.1",
     "buildTool": "maven",
     "skipUserManagement": true,
     "clientPackageManager": "npm",
