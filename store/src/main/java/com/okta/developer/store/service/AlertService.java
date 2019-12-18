@@ -12,16 +12,14 @@ import org.springframework.stereotype.Service;
 public class AlertService {
 
     private final static Logger logger = LoggerFactory.getLogger(AlertService.class);
-
     private final StoreKafkaProducer storeKafkaProducer;
-
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public AlertService(StoreKafkaProducer storeKafkaProducer){
+    public AlertService(StoreKafkaProducer storeKafkaProducer) {
         this.storeKafkaProducer = storeKafkaProducer;
     }
 
-    public void alertStoreStatus(Store store){
+    public void alertStoreStatus(Store store) {
         try {
             StoreAlertDTO storeAlertDTO = new StoreAlertDTO(store);
             String message = objectMapper.writeValueAsString(storeAlertDTO);

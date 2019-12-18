@@ -5,11 +5,11 @@ export class StoreAlertComponentsPage {
   deleteButtons = element.all(by.css('jhi-store-alert div table .btn-danger'));
   title = element.all(by.css('jhi-store-alert div h2#page-heading span')).first();
 
-  async clickOnCreateButton(timeout?: number) {
+  async clickOnCreateButton() {
     await this.createButton.click();
   }
 
-  async clickOnLastDeleteButton(timeout?: number) {
+  async clickOnLastDeleteButton() {
     await this.deleteButtons.last().click();
   }
 
@@ -58,11 +58,11 @@ export class StoreAlertUpdatePage {
     return await this.timestampInput.getAttribute('value');
   }
 
-  async save(timeout?: number) {
+  async save() {
     await this.saveButton.click();
   }
 
-  async cancel(timeout?: number) {
+  async cancel() {
     await this.cancelButton.click();
   }
 
@@ -79,7 +79,7 @@ export class StoreAlertDeleteDialog {
     return this.dialogTitle.getAttribute('jhiTranslate');
   }
 
-  async clickOnConfirmButton(timeout?: number) {
+  async clickOnConfirmButton() {
     await this.confirmButton.click();
   }
 }

@@ -62,3 +62,4 @@ entity StoreAlert {
 
 microservice Store with store
 microservice StoreAlert with alert
+

@@ -30,7 +30,6 @@ public class StoreKafkaProducer {
     }
 
     public void send(String message) {
-        log.debug("Kafka producer sending: {}", message);
         ProducerRecord<String, String> record = new ProducerRecord<>(TOPIC, message);
         try {
             kafkaProducer.send(record);

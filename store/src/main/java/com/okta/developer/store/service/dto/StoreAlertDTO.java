@@ -7,7 +7,6 @@ public class StoreAlertDTO {
     private String storeName;
     private String storeStatus;
 
-
     public StoreAlertDTO(Store store){
         this.storeName = store.getName();
         this.storeStatus = store.getStatus().name();

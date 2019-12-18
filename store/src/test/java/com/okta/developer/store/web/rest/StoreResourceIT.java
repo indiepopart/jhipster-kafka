@@ -230,7 +230,7 @@ public class StoreResourceIT {
             .andExpect(jsonPath("$.[*].createTimestamp").value(hasItem(DEFAULT_CREATE_TIMESTAMP.toString())))
             .andExpect(jsonPath("$.[*].updateTimestamp").value(hasItem(DEFAULT_UPDATE_TIMESTAMP.toString())));
     }
-    
+
     @Test
     public void getStore() throws Exception {
         // Initialize the database
@@ -319,19 +319,5 @@ public class StoreResourceIT {
         // Validate the database contains one less item
         List<Store> storeList = storeRepository.findAll();
         assertThat(storeList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    public void equalsVerifier() throws Exception {
-        TestUtil.equalsVerifier(Store.class);
-        Store store1 = new Store();
-        store1.setId("id1");
-        Store store2 = new Store();
-        store2.setId(store1.getId());
-        assertThat(store1).isEqualTo(store2);
-        store2.setId("id2");
-        assertThat(store1).isNotEqualTo(store2);
-        store1.setId(null);
-        assertThat(store1).isNotEqualTo(store2);
     }
 }

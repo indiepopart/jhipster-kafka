@@ -5,7 +5,6 @@ public class StoreAlertDTO {
     private String storeName;
     private String storeStatus;
 
-
     public String getStoreName() {
         return storeName;
     }

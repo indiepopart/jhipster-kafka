@@ -155,6 +155,7 @@ spring:
           oidc:
             client-id: internal
             client-secret: internal
+
 server:
   servlet:
     session:
@@ -222,6 +223,5 @@ kafka:
 # ===================================================================
 
 # application:
-
 alert:
   distribution-list: list@email
