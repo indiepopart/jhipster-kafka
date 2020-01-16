@@ -1,27 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
+import { Observable, of, EMPTY } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
-import { Observable, of } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { Store } from 'app/shared/model/store/store.model';
+import { IStore, Store } from 'app/shared/model/store/store.model';
 import { StoreService } from './store.service';
 import { StoreComponent } from './store.component';
 import { StoreDetailComponent } from './store-detail.component';
 import { StoreUpdateComponent } from './store-update.component';
-import { StoreDeletePopupComponent } from './store-delete-dialog.component';
-import { IStore } from 'app/shared/model/store/store.model';
 
 @Injectable({ providedIn: 'root' })
 export class StoreResolve implements Resolve<IStore> {
-  constructor(private service: StoreService) {}
+  constructor(private service: StoreService, private router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IStore> {
+  resolve(route: ActivatedRouteSnapshot): Observable<IStore> | Observable<never> {
     const id = route.params['id'];
     if (id) {
       return this.service.find(id).pipe(
-        filter((response: HttpResponse<Store>) => response.ok),
-        map((store: HttpResponse<Store>) => store.body)
+        flatMap((store: HttpResponse<Store>) => {
+          if (store.body) {
+            return of(store.body);
+          } else {
+            this.router.navigate(['404']);
+            return EMPTY;
+          }
+        })
       );
     }
     return of(new Store());
@@ -73,21 +78,5 @@ export const storeRoute: Routes = [
       pageTitle: 'gatewayApp.storeStore.home.title'
     },
     canActivate: [UserRouteAccessService]
-  }
-];
-
-export const storePopupRoute: Routes = [
-  {
-    path: ':id/delete',
-    component: StoreDeletePopupComponent,
-    resolve: {
-      store: StoreResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'gatewayApp.storeStore.home.title'
-    },
-    canActivate: [UserRouteAccessService],
-    outlet: 'popup'
   }
 ];

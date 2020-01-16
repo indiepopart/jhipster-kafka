@@ -5,20 +5,12 @@ import { GatewaySharedModule } from 'app/shared/shared.module';
 import { StoreAlertComponent } from './store-alert.component';
 import { StoreAlertDetailComponent } from './store-alert-detail.component';
 import { StoreAlertUpdateComponent } from './store-alert-update.component';
-import { StoreAlertDeletePopupComponent, StoreAlertDeleteDialogComponent } from './store-alert-delete-dialog.component';
-import { storeAlertRoute, storeAlertPopupRoute } from './store-alert.route';
-
-const ENTITY_STATES = [...storeAlertRoute, ...storeAlertPopupRoute];
+import { StoreAlertDeleteDialogComponent } from './store-alert-delete-dialog.component';
+import { storeAlertRoute } from './store-alert.route';
 
 @NgModule({
-  imports: [GatewaySharedModule, RouterModule.forChild(ENTITY_STATES)],
-  declarations: [
-    StoreAlertComponent,
-    StoreAlertDetailComponent,
-    StoreAlertUpdateComponent,
-    StoreAlertDeleteDialogComponent,
-    StoreAlertDeletePopupComponent
-  ],
+  imports: [GatewaySharedModule, RouterModule.forChild(storeAlertRoute)],
+  declarations: [StoreAlertComponent, StoreAlertDetailComponent, StoreAlertUpdateComponent, StoreAlertDeleteDialogComponent],
   entryComponents: [StoreAlertDeleteDialogComponent]
 })
 export class AlertStoreAlertModule {}
